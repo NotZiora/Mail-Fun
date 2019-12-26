@@ -2,7 +2,8 @@
 
 QoL tbh 
 
-By: Cattalol
+Mod By: Cattalol
+
 Upaded: NotZiora
 
 ## Setup:
