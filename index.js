@@ -6,12 +6,6 @@ const MAIL_FAILURE_INBOX_FULL = "@733";
 const MAIL_FAILURE_NO_GOLD = "@59";
 
 module.exports = function MemeMail (dispatch) {
-	/*	
-	- Mailing opcodes (currently) not mapped by Caali:
-		- C_SET_SEND_PARCEL_TYPE
-		- C_SET_SEND_PARCEL_MONEY
-		- C_SEND_PARCEL		
-	*/
 
 	const command = dispatch.command;
 	const config = require('./config.json');
@@ -22,7 +16,6 @@ module.exports = function MemeMail (dispatch) {
 	let numParcelSent = 0;
 	let maxParcels = 100; // other issues (such as recipient inbox becoming full...) notwithstanding, send this many parcels.
 
-	// Update our gold.
 	dispatch.hook('S_INVEN', 19, event => {
 		currentGold = event.gold;
 	});	
@@ -30,7 +23,6 @@ module.exports = function MemeMail (dispatch) {
 		currentGold = 1;
 	});
 
-	// :PepeStare:
 	command.add('mememailnum', (arg1) => {
 		if (isNumber(arg1)){
 			maxParcels = Math.max(Math.floor(arg1), 1);
@@ -41,7 +33,6 @@ module.exports = function MemeMail (dispatch) {
 		}
 	})
 
-	// :PepePoggers:
 	command.add('mememail', (arg1) => {
 		if (arg1 != undefined) {
 			manualInterrupt = false;
@@ -54,19 +45,16 @@ module.exports = function MemeMail (dispatch) {
 		}
 	})
 
-	// :PepeCry:
 	command.add('mememailstop', () => {
 		manualInterrupt = true;
 		logMessage(`Halting mail memes...`)
 	});
 
-	// :UwU: Let's go meme someone's mail-box.
 	function sendMail(){		
 		if(config.Subjects == undefined || config.Bodies == undefined){
 			logMessage(`There was a problem parsing your config file.`)
 			return;
 		}
-		// It costs 50 copper to send the message itself.
 		if(currentGold < 1) {
 			logMessage(`Not enough gold!`)
 			return;
@@ -74,8 +62,7 @@ module.exports = function MemeMail (dispatch) {
 		logMessage(`Proceeding to meme ${currentRecipient}'s mailbox! Up to ${maxParcels} will be sent.`)		
 		initMail();
 	}
-
-	// :OwO: Gimme 'dat sweet sweet contract.
+	
 	function initMail() {
 		if (manualInterrupt){
 			manualInterrupt = false;
@@ -101,7 +88,6 @@ module.exports = function MemeMail (dispatch) {
 		})
 	}
 
-	// :PepeShrug:, technically speaking the first C_SET_SEND_PARCEL_TYPE should be unnecessary, but we're emulating client packet order.
 	function openMsg(mailid){
 		dispatch.toServer('C_SET_SEND_PARCEL_TYPE', 1, {
 			contract: mailid,
@@ -120,7 +106,6 @@ module.exports = function MemeMail (dispatch) {
 		});
 	}
 
-	// Actually send the parcel, and process the first system message we get.
 	function sendParcel(mailid, subject, body){
 		dispatch.hookOnce('S_SYSTEM_MESSAGE', 1, (event) => {
 			processMailResult(event.message);
