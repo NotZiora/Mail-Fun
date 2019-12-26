@@ -8,15 +8,13 @@ Upaded: NotZiora
 ## Setup:
 - Place all .def files in the defs folder inside `<path to proxy>\node_modules\tera-data\protocol\` (there will be lots of other .def files already inside)
 - The following opcodes must be mapped:
-  - C_SET_SEND_PARCEL_TYPE
-  - C_SET_SEND_PARCEL_MONEY
-  - C_SEND_PARCEL
-- If provided for your patch & region, copy & paste the contents of the `protocol.<your-region's-current-protocol>.map` into the file of the same name within `<path to proxy>\node_modules\tera-data\map\`.
+  - C_SET_SEND_PARCEL_TYPE = 65305 (eu)
+  - C_SET_SEND_PARCEL_MONEY = 64359 (eu)
+  - C_SEND_PARCEL = 36540 (eu)
+
 - If not provided for your patch & region,, you must map them yourself. Use tools such as:
   - https://github.com/Owyn/alex-packet-id-finder 
   - https://github.com/Owyn/PacketsLogger
-  - TERA.exe opcode dumper (generally only works on EU only, but it reportedly also works for NA builds sometimes? :shrug:)
-- Run the module (see commands below), and let the memes begin!
 
 ## Usage:
 - This module will proceed to ~~spam~~ meme a target character's parcel-post with **creative and totally inoffensive** messages. 
