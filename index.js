@@ -5,7 +5,7 @@ const MAIL_FAILURE_TOO_MUCH_GOLD = "@723";
 const MAIL_FAILURE_INBOX_FULL = "@733";
 const MAIL_FAILURE_NO_GOLD = "@59";
 
-module.exports = function Mail Fun (dispatch) {
+module.exports = function MailFun (dispatch) {
 
 	const command = dispatch.command;
 	const config = require('./config.json');
