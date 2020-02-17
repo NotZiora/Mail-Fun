@@ -9,9 +9,9 @@ Upaded: NotZiora
 ## Setup:
 - Place all .def files in the defs folder inside `<path to proxy>\node_modules\tera-data\protocol\` (there will be lots of other .def files already inside)
 - The following opcodes must be mapped:
-  - C_SET_SEND_PARCEL_TYPE = 65305 (eu)
-  - C_SET_SEND_PARCEL_MONEY = 64359 (eu)
-  - C_SEND_PARCEL = 36540 (eu)
+  - C_SET_SEND_PARCEL_TYPE 
+  - C_SET_SEND_PARCEL_MONEY 
+  - C_SEND_PARCEL 
 
 - If not provided for your patch & region,, you must map them yourself. Use tools such as:
   - https://github.com/Owyn/alex-packet-id-finder 
